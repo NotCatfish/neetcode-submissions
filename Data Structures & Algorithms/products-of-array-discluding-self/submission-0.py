@@ -1,24 +1,18 @@
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        [1,1,2,8]
-        [48,24,6,1]
-
         lenght=len(nums)
+        prefix_sum=[]
+        suffix_sum=[]
+        result=[0]*lenght
+        prefix=1
+        suffix=1
+        for x in range(lenght):
+            prefix_sum.append(prefix)
+            prefix*=nums[x]
+            suffix_sum.append(suffix)
+            suffix*=nums[lenght-x-1]
 
-        prefix=[1]*lenght
-        postfix=[1]*lenght
-
-        for x in range(1, lenght):
-            prefix[x]=prefix[x-1]*nums[x-1]
-
-            postfix[lenght-x-1]=postfix[lenght-x]*nums[lenght-x]
-
-
-        solution=[1]*lenght
-        counter=0
-        for x,y in zip(prefix,postfix):
-            solution[counter]=x*y
-            counter+=1
-
-        return solution
-
+        for x in range(lenght):
+            result[x]=suffix_sum[lenght-x-1]*prefix_sum[x]
+        
+        return result
