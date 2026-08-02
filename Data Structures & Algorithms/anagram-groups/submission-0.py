@@ -1,14 +1,11 @@
+from collections import defaultdict
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        
-        #iterate and store index as key and then store dict as value which has alphabet as key and count as value
-        dictionary={}
-        for x in strs:
-            sortedstr="".join(sorted(x))
-            if sortedstr in dictionary:
-                dictionary[sortedstr].append(x)
-            else:
-                dictionary[sortedstr]=[]
-                dictionary[sortedstr].append(x)
+        anagrams=defaultdict(list)
 
-        return list(dictionary.values())
+        for key in strs:
+            sorted_word="".join(sorted(key))
+            anagrams[sorted_word].append(key)
+
+        return list(anagrams.values())
+        
