@@ -9,7 +9,8 @@ class Solution:
         for left in range(lenght-2):
             while middle<right and right<lenght:
                 if nums[left]+nums[middle]+nums[right]==0:
-                    result.append([nums[left],nums[middle],nums[right]])
+                    if [nums[left],nums[middle],nums[right]] not in result:
+                        result.append([nums[left],nums[middle],nums[right]])
                 
                 right+=1
                 middle+=1

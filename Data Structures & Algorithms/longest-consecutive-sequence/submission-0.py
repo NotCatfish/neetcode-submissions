@@ -1,24 +1,25 @@
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
-        #input the data into hash table
-        #pick 1st element and do if 1stelement+1 in hash increase max by 1 and repeat this for all
-        store={}
-        currmax=0
-        finalmax=0
+        seen={}
+        current_len=1
+        max_len=1
         for x in nums:
-            if x in store:
-                store[x]+=1
+            if x in seen:
+                seen[x]+=1
             else:
-                store[x]=1
+                seen[x]=1
 
-        for x in store:
-            number=x
-            currmax=1
-            while number+1 in store:
-                currmax+=1
-                number+=1
-            
-            if currmax>finalmax:
-                finalmax=currmax
+        for key in seen:
+            if key-1 not in seen:
+                current_len=1
+                current_key=key
+                while current_key+1 in seen:
+                    current_len+=1
+                    current_key+=1
+                    key+=1
 
-        return finalmax
+                if current_len>max_len:
+                    max_len=current_len
+
+        return max_len
+
