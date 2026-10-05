@@ -1,2 +1,5 @@
 -- Write your query below
-SELECT customer_id FROM customers WHERE year=2020 AND revenue>0
+SELECT DISTINCT
+    customer_id
+FROM customers
+WHERE revenue>0 AND year=2020
